@@ -140,39 +140,39 @@ fetch("./assets/js/evento.json")
     } else {
       removeSection("presentacion");
     }
-/* ================= UBICACIÓN ================= */
+    /* ================= UBICACIÓN ================= */
 
-if (isEnabled(data.ubicacion)) {
-  const u = data.ubicacion;
+    if (isEnabled(data.ubicacion)) {
+      const u = data.ubicacion;
 
-  document.getElementById("ubicacion-titulo").textContent = u.titulo;
+      document.getElementById("ubicacion-titulo").textContent = u.titulo;
 
-  /* ===== FECHA GENERAL ===== */
+      /* ===== FECHA GENERAL ===== */
 
-  const fechaEl = document.getElementById("ubicacion-fecha-general");
+      const fechaEl = document.getElementById("ubicacion-fecha-general");
 
-  if (fechaEl && data.hero?.fecha_boda) {
-    const fecha = new Date(data.hero.fecha_boda);
+      if (fechaEl && data.hero?.fecha_boda) {
+        const fecha = new Date(data.hero.fecha_boda);
 
-    fechaEl.textContent = fecha.toLocaleDateString("es-MX", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    });
-  }
+        fechaEl.textContent = fecha.toLocaleDateString("es-MX", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        });
+      }
 
-  /* ===== LISTA ===== */
+      /* ===== LISTA ===== */
 
-  const lista = document.getElementById("ubicacion-lista");
-  lista.innerHTML = "";
+      const lista = document.getElementById("ubicacion-lista");
+      lista.innerHTML = "";
 
-  u.lugares
-    .filter((l) => isEnabled(l) && l.lugar && l.hora)
-    .forEach((lugar) => {
-      lista.insertAdjacentHTML(
-        "beforeend",
-        `
+      u.lugares
+        .filter((l) => isEnabled(l) && l.lugar && l.hora)
+        .forEach((lugar) => {
+          lista.insertAdjacentHTML(
+            "beforeend",
+            `
         <div class="ubicacion-card reveal">
           <h3 class="ubicacion-subtitle">${lugar.tipo}</h3>
 
@@ -184,33 +184,31 @@ if (isEnabled(data.ubicacion)) {
             ${lugar.lugar}
           </div>
 
-          ${
-            lugar.direccion?.length
+          ${lugar.direccion?.length
               ? `
               <div class="ubicacion-direccion">
                 ${lugar.direccion.join("<br>")}
               </div>
             `
               : ""
-          }
+            }
 
-          ${
-            lugar.mapa
+          ${lugar.mapa
               ? `
               <a href="${lugar.mapa}" target="_blank" class="btn-ubicacion">
                 Ver ubicación
               </a>
             `
               : ""
-          }
+            }
         </div>
       `
-      );
-    });
+          );
+        });
 
-} else {
-  removeSection("ubicacion");
-}
+    } else {
+      removeSection("ubicacion");
+    }
 
     /* ================= PROGRAMA ================= */
 
@@ -271,6 +269,22 @@ if (isEnabled(data.ubicacion)) {
         `
         );
       });
+      if (r.boton?.enabled && r.boton.link) {
+        cont.insertAdjacentHTML(
+          "beforeend",
+          `
+    <div class="regalo-item reveal">
+      <a
+        href="${r.boton.link}"
+        target="_blank"
+        class="btn-regalo"
+      >
+        ${r.boton.texto}
+      </a>
+    </div>
+    `
+        );
+      }
     } else {
       removeSection("regalos");
     }

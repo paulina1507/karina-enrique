@@ -108,19 +108,16 @@
       ],
       "novio": [
         "CLARA MITZIN PRIETO",
-        "RUBEN RODRIGUEZ AGUILAR"
+        "RUBÉN RODRÍGUEZ AGUILAR"
       ]
     },
-    "padrinos": [
-      "AURELIA RIVERA NIETO",
-      "BERNARDO ORTEGA ORTIZ"
-    ],
+    "padrinos": [],
     "texto_final": "Iniciaremos nuestra historia en matrimonio y tenemos el honor de invitarte a ser parte de este gran día.",
     "imagen": "novios.svg",
     "labels": {
       "padres_novia": "Padres de la Novia",
       "padres_novio": "Padres del Novio",
-      "padrinos": "Padrinos"
+      "padrinos": ""
     }
   },
   "ubicacion": {
@@ -157,9 +154,10 @@
     "enabled": true,
     "titulo": "Programa del Evento",
     "progress_steps": [
-      25,
-      50,
-      75,
+      20,
+      40,
+      60,
+      80,
       100
     ],
     "items": [
@@ -199,18 +197,23 @@
     "enabled": true,
     "titulo": "Código de Vestimenta",
     "icono": "9.svg",
-    "formal": "FORMAL / ETIQUETA",
+    "formal": "FORMAL",
     "labels": {
       "mujeres": "",
       "hombres": ""
     },
     "mujeres": "",
-    "hombres": "Evitar colores claros o nude y color rojo"
+    "hombres": "Evitar colores claros, nude y rojo."
   },
   "regalos": {
     "enabled": true,
     "titulo": "Sugerencia de Regalos",
-    "descripcion": "Lo más importante para nosotros es compartir este día contigo.<br>Si deseas hacernos un obsequio, habrá una mesa de regalos en la fiesta.",
+    "descripcion": "Lo más importante para nosotros es compartir este día contigo.<br>Si deseas hacernos un obsequio, puedes visitar nuestra mesa de regalos o participar en la lluvia de sobres.",
+    "boton": {
+      "enabled": true,
+      "texto": "Ver mesa de regalos",
+      "link": "https://mesaderegalos.liverpool.com.mx/milistaderegalos/52008276"
+    },
     "items": [
       {
         "icono": "10.svg",
@@ -218,7 +221,7 @@
       },
       {
         "icono": "11.svg",
-        "label": "Regalo Sorpresa"
+        "label": "Mesa de Regalos Liverpool"
       }
     ]
   },

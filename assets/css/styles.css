@@ -1771,11 +1771,33 @@ body.footer-ready footer.site-footer {
 /* SOLAPAS                                                   */
 /* ========================================================= */
 
+/* CENTRAR CORRECTAMENTE TODAS LAS SOLAPAS */
 .flap {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 0;
   height: 0;
   border-style: solid;
+}
+
+/* SOLAPA SUPERIOR PERFECTAMENTE CENTRADA */
+.flap.top {
+  top: 0;
+  left: 0;
+
+  border-width: 125px 210px;
+  border-top-color: var(--envelope-color);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+
+  transform-origin: 210px 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+  z-index: 4;
+  filter: brightness(1.14);
 }
 
 /* INFERIOR */
@@ -1800,19 +1822,6 @@ body.footer-ready footer.site-footer {
   border-left-color: transparent;
   border-right-color: transparent;
   border-top-color: transparent;
-}
-
-/* SUPERIOR */
-.flap.top {
-  border-width: 125px 210px;
-  border-top-color: var(--envelope-color);
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: transparent;
-  transform-origin: top center;
-  transform-style: preserve-3d;
-  z-index: 4;
-  filter: brightness(1.03);
 }
 
 /* ========================================================= */
@@ -1927,13 +1936,36 @@ body.footer-ready footer.site-footer {
 /* RESPONSIVE                                                */
 /* ========================================================= */
 
-@media (max-width: 480px) {
-  .envelope {
-    transform: scale(0.72);
-    transform-origin: center;
-  }
-}
+@media (max-width:480px){
 
+    .envelope{
+        width:300px;
+        height:168px;
+        transform:none;
+    }
+
+    .flap.top{
+        border-width:84px 150px;
+        transform-origin:150px 0;
+    }
+
+    .flap.front{
+        border-width:84px 150px;
+    }
+
+    .flap.front::after{
+        left:-150px;
+        bottom:-84px;
+        border-width:82px 150px;
+    }
+
+    .letter{
+        width:289px;
+        height:153px;
+        left:5px;
+        top:8px;
+    }
+}
 /* ========================================================= */
 /* SELLO                                                   */
 /* ========================================================= */
@@ -2163,4 +2195,32 @@ body.footer-ready .music-btn {
   opacity: 1 !important;
   transform: none !important;
   visibility: visible !important;
+}
+
+.btn-regalo{
+    display:inline-block;
+    margin-top:24px;
+    padding:14px 34px;
+
+    background:#0B2344;
+    color:#fff;
+
+    text-decoration:none;
+    border-radius:50px;
+
+    font-weight:600;
+    letter-spacing:.5px;
+
+    transition:.3s;
+}
+
+.btn-regalo:hover{
+    background:#173C73;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(11,35,68,.25);
+}
+
+#vestimenta-hombres{
+    margin-top: 24px;
+    line-height: 1.8;
 }
