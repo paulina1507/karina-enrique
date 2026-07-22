@@ -198,32 +198,33 @@
     "titulo": "Código de Vestimenta",
     "icono": "9.svg",
     "formal": "FORMAL",
+    "restriccion": "Evitar colores claros, nude y rojo.",
     "labels": {
-      "mujeres": "",
-      "hombres": ""
+      "mujeres": "Mujeres",
+      "hombres": "Hombres"
     },
-    "mujeres": "",
-    "hombres": "Evitar colores claros, nude y rojo."
+    "mujeres": "Vestido de cóctel, formal o midi.",
+    "hombres": "Traje completo o pantalón de vestir y camisa."
   },
   "regalos": {
     "enabled": true,
     "titulo": "Sugerencia de Regalos",
-    "descripcion": "Lo más importante para nosotros es compartir este día contigo.<br>Si deseas hacernos un obsequio, puedes visitar nuestra mesa de regalos o participar en la lluvia de sobres.",
-    "boton": {
-      "enabled": true,
-      "texto": "Ver mesa de regalos",
-      "link": "https://mesaderegalos.liverpool.com.mx/milistaderegalos/52008276"
-    },
+    "descripcion": "Lo más importante para nosotros es compartir este día contigo.<br>Si deseas hacernos un obsequio, puedes participar en la lluvia de sobres, elegir un regalo sorpresa o visitar nuestra mesa de regalos.",
     "items": [
+      {
+        "icono": "11.svg",
+        "label": "Regalo Sorpresa"
+      },
       {
         "icono": "10.svg",
         "label": "Lluvia de Sobres"
-      },
-      {
-        "icono": "11.svg",
-        "label": "Mesa de Regalos Liverpool"
       }
-    ]
+    ],
+    "boton": {
+      "enabled": true,
+      "texto": "Ver mesa de regalos Liverpool",
+      "link": "https://mesaderegalos.liverpool.com.mx/milistaderegalos/52008276"
+    }
   },
   "galeria": {
     "enabled": true,
@@ -240,26 +241,47 @@
   },
   "rsvp": {
     "enabled": true,
-    "titulo": "Confirmar asistencia",
-    "texto": "Nos encantaría saber si podrán acompañarnos en este día tan especial.<br>Gracias por tomarse un momento para responder.",
-    "nota": "Les agradeceremos confirmar su asistencia para acompañarnos en este día tan especial.",
+    "titulo": "Asistencia",
+    "texto": "Para nosotros será un honor contar con tu presencia en este día tan especial.",
+    "invitado": {
+      "label": "Invitado",
+      "nombre": "Familia Hernández López",
+      "nota": "Este nombre fue asignado por los anfitriones"
+    },
+    "asistencia": {
+      "label": "¿Podrás acompañarnos?",
+      "placeholder": "¿Asistirás a nuestra celebración?",
+      "opciones": [
+        {
+          "value": "si",
+          "texto": "Sí, asistiremos"
+        },
+        {
+          "value": "no",
+          "texto": "No podremos asistir"
+        }
+      ]
+    },
+    "mensaje": {
+      "label": "Mensaje para los novios (opcional)",
+      "placeholder": "Mensaje para los novios"
+    },
     "pase": {
       "enabled": true,
       "cantidad": 2,
-      "label": ""
+      "label": "Pases asignados"
     },
     "mesa": {
       "enabled": true,
       "numero": 4,
-      "label": ""
+      "label": "Mesa asignada"
     },
-    "botones": {
-      "si": "Sí, asistiremos",
-      "no": "No podremos asistir"
-    },
+    "boton": "Confirmar asistencia",
+    "nota": "Agradecemos confirmar su asistencia antes del <br><strong>01 de octubre de 2026</strong>.",
     "final": {
       "titulo": "¡Gracias por confirmar!",
-      "texto": "Nos llena de alegría saber que compartirán este día con nosotros.",
+      "texto_si": "Nos llena de alegría saber que compartirán este día con nosotros.",
+      "texto_no": "Gracias por informarnos. Los tendremos presentes en este día tan especial.",
       "firma": "Karina & Enrique"
     }
   },
@@ -299,6 +321,6 @@
   },
   "footer": {
     "enabled": true,
-    "text": "Diseñado con amor por Shiny Maker Events"
+    "text": "Diseñado con amor por <a href=\"https://shiny-maker.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Shiny Maker Events</a>"
   }
 }

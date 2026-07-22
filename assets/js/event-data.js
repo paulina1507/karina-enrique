@@ -242,6 +242,15 @@ fetch("./assets/js/evento.json")
       document.getElementById("vestimenta-titulo").textContent = v.titulo;
       document.getElementById("vestimenta-icon").src = `assets/img/${v.icono}`;
       document.getElementById("vestimenta-formal").textContent = v.formal;
+      document.getElementById("vestimenta-restriccion").innerHTML =
+        v.restriccion || "";
+
+      document.getElementById("vestimenta-label-mujeres").textContent =
+        v.labels?.mujeres || "Mujeres";
+
+      document.getElementById("vestimenta-label-hombres").textContent =
+        v.labels?.hombres || "Hombres";
+
       document.getElementById("vestimenta-mujeres").innerHTML = v.mujeres;
       document.getElementById("vestimenta-hombres").innerHTML = v.hombres;
     } else {
@@ -312,42 +321,93 @@ fetch("./assets/js/evento.json")
 
     if (isEnabled(data.rsvp)) {
       const rsvp = data.rsvp;
-      const form = document.getElementById("rsvp-form");
 
-      if (form) {
-        form.querySelector(".arco-title").textContent = rsvp.titulo || "";
-        form.querySelector(".rsvp-text").innerHTML = rsvp.texto || "";
-        form.querySelector(".rsvp-note").innerHTML = rsvp.nota || "";
-        form.querySelector(".rsvp-btn.yes").textContent =
-          rsvp.botones?.si || "";
-        form.querySelector(".rsvp-btn.no").textContent = rsvp.botones?.no || "";
+      const setText = (id, value = "") => {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value;
+      };
+
+      const setHTML = (id, value = "") => {
+        const element = document.getElementById(id);
+        if (element) element.innerHTML = value;
+      };
+
+      setText("rsvp-title", rsvp.titulo || "Asistencia");
+      setHTML("rsvp-text", rsvp.texto || "");
+
+      /* Invitado personalizado */
+      setText("rsvpGuestLabel", rsvp.invitado?.label || "Invitado");
+      setText("rsvpGuestName", rsvp.invitado?.nombre || "Invitado");
+      setText("rsvpGuestNote", rsvp.invitado?.nota || "");
+
+      /* Asistencia */
+      setText(
+        "rsvpAttendanceLabel",
+        rsvp.asistencia?.label || "¿Podrás acompañarnos?"
+      );
+
+      const attendanceSelect = document.getElementById("rsvpAttendance");
+
+      if (attendanceSelect) {
+        attendanceSelect.innerHTML = "";
+
+        const placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.disabled = true;
+        placeholder.selected = true;
+        placeholder.textContent =
+          rsvp.asistencia?.placeholder ||
+          "¿Asistirás a nuestra celebración?";
+
+        attendanceSelect.appendChild(placeholder);
+
+        (rsvp.asistencia?.opciones || []).forEach((opcion) => {
+          const option = document.createElement("option");
+          option.value = opcion.value;
+          option.textContent = opcion.texto;
+          attendanceSelect.appendChild(option);
+        });
       }
 
-      const passLabel = document.getElementById("rsvpPassLabel");
-      const passValue = document.getElementById("rsvpPassValue");
-      const tableLabel = document.getElementById("rsvpTableLabel");
-      const tableValue = document.getElementById("rsvpTableValue");
+      /* Mensaje */
+      setText(
+        "rsvpMessageLabel",
+        rsvp.mensaje?.label || "Mensaje para los novios (opcional)"
+      );
 
-      /* ===== PASE ===== */
-      if (rsvp.pase?.enabled !== false && passLabel && passValue) {
-        passLabel.textContent = rsvp.pase.label || "Pase para";
-        passValue.textContent = `${rsvp.pase.cantidad} personas`;
-      } else {
-        passLabel?.closest(".rsvp-pass-item")?.remove();
+      const message = document.getElementById("rsvpMessage");
+
+      if (message) {
+        message.placeholder =
+          rsvp.mensaje?.placeholder || "Mensaje para los novios";
       }
 
-      /* ===== MESA ===== */
-      if (rsvp.mesa?.enabled !== false && tableLabel && tableValue) {
-        tableLabel.textContent = rsvp.mesa.label || "Mesa asignada";
-        tableValue.textContent = `Mesa ${rsvp.mesa.numero}`;
-      } else {
-        tableLabel?.closest(".rsvp-pass-item")?.remove();
-      }
-      /* ===== LIMPIAR CONTENEDOR VACÍO ===== */
-      const passInfo = document.querySelector(".rsvp-pass-info");
+      /* Botón y nota */
+      setText("rsvpSubmit", rsvp.boton || "Confirmar asistencia");
+      setHTML("rsvpNote", rsvp.nota || "");
 
-      if (passInfo && !rsvp.pase?.enabled && !rsvp.mesa?.enabled) {
-        passInfo.remove();
+      /* Datos del resultado */
+      setText("rsvpPassLabel", rsvp.pase?.label || "Pases asignados");
+      setText("rsvpPassValue", rsvp.pase?.cantidad ?? "");
+
+      setText("rsvpTableLabel", rsvp.mesa?.label || "Mesa asignada");
+      setText(
+        "rsvpTableValue",
+        rsvp.mesa?.numero ? `Mesa ${rsvp.mesa.numero}` : ""
+      );
+
+      if (rsvp.pase?.enabled === false) {
+        document
+          .getElementById("rsvpPassLabel")
+          ?.closest(".rsvp-pass-item")
+          ?.remove();
+      }
+
+      if (rsvp.mesa?.enabled === false) {
+        document
+          .getElementById("rsvpTableLabel")
+          ?.closest(".rsvp-pass-item")
+          ?.remove();
       }
     } else {
       removeSection("rsvp");
